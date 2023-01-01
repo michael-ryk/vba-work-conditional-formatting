@@ -448,6 +448,58 @@ Const tasksRange As String = "A:D"
     
 End Sub
 
+Sub MyTasksProjectView()
+
+    'Clear filter if applied
+    On Error Resume Next
+    ActiveSheet.ShowAllData
+
+    ActiveWorkbook.Worksheets("Tasks").ListObjects("TaskTable").Sort.SortFields. _
+        Clear
+    ActiveWorkbook.Worksheets("Tasks").ListObjects("TaskTable").Sort.SortFields. _
+        Add2 Key:=Range("TaskTable[Project]"), SortOn:=xlSortOnValues, Order:= _
+        xlAscending, DataOption:=xlSortNormal
+    ActiveWorkbook.Worksheets("Tasks").ListObjects("TaskTable").Sort.SortFields. _
+        Add2 Key:=Range("TaskTable[Start]"), SortOn:=xlSortOnValues, Order:= _
+        xlDescending, DataOption:=xlSortNormal
+    With ActiveWorkbook.Worksheets("Tasks").ListObjects("TaskTable").Sort
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+
+End Sub
+
+Sub MyTasksPriorityView()
+
+    'Clear filter if applied
+    On Error Resume Next
+    ActiveSheet.ShowAllData
+    
+    ActiveWorkbook.Worksheets("Tasks").ListObjects("TaskTable").Sort.SortFields. _
+        Clear
+    ActiveWorkbook.Worksheets("Tasks").ListObjects("TaskTable").Sort.SortFields. _
+        Add2 Key:=Range("TaskTable[Relevant]"), SortOn:=xlSortOnValues, Order:= _
+        xlDescending, DataOption:=xlSortNormal
+    ActiveWorkbook.Worksheets("Tasks").ListObjects("TaskTable").Sort.SortFields. _
+        Add2 Key:=Range("TaskTable[Priority]"), SortOn:=xlSortOnValues, Order:= _
+        xlAscending, DataOption:=xlSortNormal
+    ActiveWorkbook.Worksheets("Tasks").ListObjects("TaskTable").Sort.SortFields. _
+        Add2 Key:=Range("TaskTable[Age]"), SortOn:=xlSortOnValues, Order:= _
+        xlDescending, DataOption:=xlSortNormal
+    With ActiveWorkbook.Worksheets("Tasks").ListObjects("TaskTable").Sort
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+
+End Sub
+
+
 '==================
 Sub RegressionResultShiftRight()
 '
