@@ -13,6 +13,7 @@ Sub CondFormatDailyAnalysis()
     Const EstimateSumToday = "J4"
     Const ActualSumToday = "K4"
     Const ActualSumTodayCorner = "B2"
+    Const BalanceIndicator = "K3"
 
 ' === Clear All Conditional Formats ===
     Range("A:R").Cells.FormatConditions.Delete
@@ -50,7 +51,7 @@ Sub CondFormatDailyAnalysis()
         .StopIfTrue = False
     End With
     
-' === Format 5 - Actual hours i spent
+' === Actual hours i spent
     'Color green if same as passed hours from moment come to work  ===
     With Range(ActualSumTodayCorner).FormatConditions.Add(Type:=xlCellValue, Operator:=xlEqual, _
         Formula1:="=$C$2")
@@ -67,7 +68,24 @@ Sub CondFormatDailyAnalysis()
         .StopIfTrue = False
     End With
     
-' === Format 6 - Color rows based on Goal  ===
+' === Balance Indicator
+    'Color green if balance = 0
+    With Range(BalanceIndicator).FormatConditions.Add(Type:=xlCellValue, Operator:=xlEqual, _
+        Formula1:="0")
+        .Font.Color = -16752384
+        .Interior.Color = 13561798
+        .StopIfTrue = False
+    End With
+    
+    ' Color red if balance != 0
+    With Range(BalanceIndicator).FormatConditions.Add(Type:=xlCellValue, Operator:=xlNotEqual, _
+        Formula1:="0")
+        .Font.Color = -16383844
+        .Interior.Color = 13551615
+        .StopIfTrue = False
+    End With
+    
+' === Color rows based on Goal  ===
     With Range(ItemColumns).FormatConditions.Add(Type:=xlExpression, _
         Formula1:="=$F1=""Wasted""")
         .Interior.Color = 13551615
