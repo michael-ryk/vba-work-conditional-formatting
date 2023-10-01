@@ -142,20 +142,21 @@ Sub myTasksExcel()
 ' Clear all conditional formats and build them from scratch to fix separated formats after manipulation with rows
 '
 
-' === Const Declaration ===
-Const overdueDaysCountColumn As String = "F:F"
-Const ageDaysCountColumn As String = "E:E"
-Const deadlineDateColumn As String = "J:J"
-Const indicatorColumn As String = "G:G"
-Const statusColumn As String = "K:K"
-Const crosstrikeRange As String = "A:L"
-Const tasksRange As String = "A:D"
+' === Columns Declaration ===
+    Const ageDaysCountColumn As String = "E:E"
+    Const overdueDaysCountColumn As String = "F:F"
+    Const indicatorColumn As String = "G:G"
+    Const statusColumn As String = "K:K"
+    Const crosstrikeColumns As String = "A:L"
+    Const priorityColumns As String = "D:D"
 
 ' === Clear All Conditional Formats ===
     Range("A1").Select
     Cells.FormatConditions.Delete
     
-' === Format Overdue column ===
+' =======================
+' Format Overdue column
+' =======================
     Columns(overdueDaysCountColumn).Select
     Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlBetween, _
         Formula1:="=-0.1", Formula2:="=-9999"
@@ -203,7 +204,9 @@ Const tasksRange As String = "A:D"
     Columns("F:F").Select
     Application.CutCopyMode = False
     
-' === Format Age Column ===
+' =======================
+' Format Age Column
+' =======================
     Columns(ageDaysCountColumn).Select
     Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlBetween, _
         Formula1:="=$E$4", Formula2:="=99999"
@@ -235,7 +238,9 @@ Const tasksRange As String = "A:D"
     Selection.FormatConditions(1).StopIfTrue = False
     
     
-' === Format Status column ===
+' =======================
+' Format Status column
+' =======================
     Columns(statusColumn).Select
     Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlEqual, _
         Formula1:="=""1-Not Started"""
@@ -279,7 +284,9 @@ Const tasksRange As String = "A:D"
     End With
     Selection.FormatConditions(1).StopIfTrue = False
 
-' === Format Indicator ===
+' =======================
+' Format Indicator
+' =======================
     Columns(indicatorColumn).Select
     Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlEqual, _
         Formula1:="=""Overdue"""
@@ -296,7 +303,7 @@ Const tasksRange As String = "A:D"
     Selection.FormatConditions(1).StopIfTrue = False
     
     Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlEqual, _
-        Formula1:="=""Ok"""
+        Formula1:="=""Fresh"""
     Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
     With Selection.FormatConditions(1).Font
         .Color = -16752384
@@ -324,8 +331,10 @@ Const tasksRange As String = "A:D"
     Selection.FormatConditions(1).StopIfTrue = False
 
 
-' === Format underline ===
-    Columns(crosstrikeRange).Select
+' =======================
+' Format underline
+' =======================
+    Columns(crosstrikeColumns).Select
     Selection.FormatConditions.Add Type:=xlExpression, Formula1:="=$A1=""No"""
     Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
     With Selection.FormatConditions(1).Font
@@ -335,11 +344,13 @@ Const tasksRange As String = "A:D"
     End With
     Selection.FormatConditions(1).StopIfTrue = False
     
-' === Format Priority ===
-    Columns(tasksRange).Select
+' =======================
+' Format Priority
+' =======================
+    Columns(priorityColumns).Select
     
     Selection.FormatConditions.Add Type:=xlExpression, Formula1:= _
-        "=$D1=""1-Critical"""
+        "=$D1=""1-Crit"""
     Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
     With Selection.FormatConditions(1).Font
         .Color = -16383844
@@ -353,7 +364,7 @@ Const tasksRange As String = "A:D"
     Selection.FormatConditions(1).StopIfTrue = False
     
     Selection.FormatConditions.Add Type:=xlExpression, Formula1:= _
-        "=$D1=""2-Normal"""
+        "=$D1=""2-Norm"""
     Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
     With Selection.FormatConditions(1).Font
         .Color = -10209504
@@ -367,7 +378,7 @@ Const tasksRange As String = "A:D"
     Selection.FormatConditions(1).StopIfTrue = False
     
     Selection.FormatConditions.Add Type:=xlExpression, Formula1:= _
-        "=$D1=""3-Low Priority"""
+        "=$D1=""3-Low"""
     Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
     With Selection.FormatConditions(1).Font
         .Color = -16751204
