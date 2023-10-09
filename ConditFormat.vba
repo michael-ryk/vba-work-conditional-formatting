@@ -1,5 +1,5 @@
 '==================
-Public Const CondFormtaPackageVersion As String = "V5"
+Public Const CondFormtaPackageVersion As String = "V6"
 '==================
 Sub CondFormatDailyAnalysis()
 '
@@ -286,49 +286,50 @@ Sub myTasksExcel()
 
 ' =======================
 ' Format Indicator
+' 9/10/23 - decided to remove because it unnessesary coloring this column
 ' =======================
-    Columns(indicatorColumn).Select
-    Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlEqual, _
-        Formula1:="=""Overdue"""
-    Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
-    With Selection.FormatConditions(1).Font
-        .Color = -16383844
-        .TintAndShade = 0
-    End With
-    With Selection.FormatConditions(1).Interior
-        .PatternColorIndex = xlAutomatic
-        .Color = 13551615
-        .TintAndShade = 0
-    End With
-    Selection.FormatConditions(1).StopIfTrue = False
+    'Columns(indicatorColumn).Select
+    'Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlEqual, _
+    '    Formula1:="=""Overdue"""
+    'Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
+    'With Selection.FormatConditions(1).Font
+    '    .Color = -16383844
+    '    .TintAndShade = 0
+    'End With
+    'With Selection.FormatConditions(1).Interior
+    '    .PatternColorIndex = xlAutomatic
+    '    .Color = 13551615
+    '    .TintAndShade = 0
+    'End With
+    'Selection.FormatConditions(1).StopIfTrue = False
     
-    Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlEqual, _
-        Formula1:="=""Fresh"""
-    Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
-    With Selection.FormatConditions(1).Font
-        .Color = -16752384
-        .TintAndShade = 0
-    End With
-    With Selection.FormatConditions(1).Interior
-        .PatternColorIndex = xlAutomatic
-        .Color = 13561798
-        .TintAndShade = 0
-    End With
-    Selection.FormatConditions(1).StopIfTrue = False
+    'Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlEqual, _
+    '    Formula1:="=""Fresh"""
+    'Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
+    'With Selection.FormatConditions(1).Font
+    '    .Color = -16752384
+    '    .TintAndShade = 0
+    'End With
+    'With Selection.FormatConditions(1).Interior
+    '    .PatternColorIndex = xlAutomatic
+    '    .Color = 13561798
+    '    .TintAndShade = 0
+    'End With
+    'Selection.FormatConditions(1).StopIfTrue = False
     
-    Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlEqual, _
-        Formula1:="=""Old"""
-    Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
-    With Selection.FormatConditions(1).Font
-        .Color = -16754788
-        .TintAndShade = 0
-    End With
-    With Selection.FormatConditions(1).Interior
-        .PatternColorIndex = xlAutomatic
-        .Color = 10284031
-        .TintAndShade = 0
-    End With
-    Selection.FormatConditions(1).StopIfTrue = False
+    'Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlEqual, _
+    '    Formula1:="=""Old"""
+    'Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
+    'With Selection.FormatConditions(1).Font
+    '    .Color = -16754788
+    '    .TintAndShade = 0
+    'End With
+    'With Selection.FormatConditions(1).Interior
+    '    .PatternColorIndex = xlAutomatic
+    '    .Color = 10284031
+    '    .TintAndShade = 0
+    'End With
+    'Selection.FormatConditions(1).StopIfTrue = False
 
 
 ' =======================
@@ -471,7 +472,7 @@ Dim newCells As Range
 Set newCells = mySelectedCells.Offset(0, 1)
 
 mySelectedCells.Copy newCells
-Selection.Value = "-"
+Selection.value = "-"
 
 Application.CutCopyMode = False
 ' Debug.Print (mySelectedCells.Address)
