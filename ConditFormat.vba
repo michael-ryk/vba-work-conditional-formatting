@@ -421,8 +421,8 @@ Sub MyTasksProjectView()
         Add2 Key:=Range("TaskTable[Project]"), SortOn:=xlSortOnValues, Order:= _
         xlAscending, DataOption:=xlSortNormal
     ActiveWorkbook.Worksheets("Tasks").ListObjects("TaskTable").Sort.SortFields. _
-        Add2 Key:=Range("TaskTable[Start]"), SortOn:=xlSortOnValues, Order:= _
-        xlDescending, DataOption:=xlSortNormal
+        Add2 Key:=Range("TaskTable[Task]"), SortOn:=xlSortOnValues, Order:= _
+        xlAscending, DataOption:=xlSortNormal
     With ActiveWorkbook.Worksheets("Tasks").ListObjects("TaskTable").Sort
         .Header = xlYes
         .MatchCase = False
