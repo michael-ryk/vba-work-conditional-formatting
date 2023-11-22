@@ -418,6 +418,9 @@ Sub MyTasksProjectView()
     ActiveWorkbook.Worksheets("Tasks").ListObjects("TaskTable").Sort.SortFields. _
         Clear
     ActiveWorkbook.Worksheets("Tasks").ListObjects("TaskTable").Sort.SortFields. _
+        Add2 Key:=Range("TaskTable[Order]"), SortOn:=xlSortOnValues, Order:= _
+        xlAscending, DataOption:=xlSortNormal
+    ActiveWorkbook.Worksheets("Tasks").ListObjects("TaskTable").Sort.SortFields. _
         Add2 Key:=Range("TaskTable[Project]"), SortOn:=xlSortOnValues, Order:= _
         xlAscending, DataOption:=xlSortNormal
     ActiveWorkbook.Worksheets("Tasks").ListObjects("TaskTable").Sort.SortFields. _
