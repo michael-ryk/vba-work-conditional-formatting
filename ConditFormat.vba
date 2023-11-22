@@ -143,12 +143,12 @@ Sub myTasksExcel()
 '
 
 ' === Columns Declaration ===
-    Const ageDaysCountColumn As String = "E:E"
-    Const overdueDaysCountColumn As String = "F:F"
-    Const indicatorColumn As String = "G:G"
-    Const statusColumn As String = "K:K"
-    Const crosstrikeColumns As String = "A:L"
-    Const priorityColumns As String = "D:D"
+    Const priorityColumns As String = "E:E"
+    Const ageDaysCountColumn As String = "F:F"
+    Const overdueDaysCountColumn As String = "G:G"
+    Const indicatorColumn As String = "H:H"
+    Const statusColumn As String = "L:L"
+    Const crosstrikeColumns As String = "A:M"
 
 ' === Clear All Conditional Formats ===
     Range("A1").Select
@@ -174,7 +174,7 @@ Sub myTasksExcel()
     Application.CutCopyMode = False
     
     Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlBetween, _
-        Formula1:="=0.1", Formula2:="=$F$5"
+        Formula1:="=0.1", Formula2:="=$G$5"
     Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
     With Selection.FormatConditions(1).Font
         .Color = -16754788
@@ -189,7 +189,7 @@ Sub myTasksExcel()
     Application.CutCopyMode = False
 
     Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlBetween, _
-        Formula1:="=$F$5", Formula2:="=99999"
+        Formula1:="=$G$5", Formula2:="=99999"
     Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
     With Selection.FormatConditions(1).Font
         .Color = -16752384
@@ -209,7 +209,7 @@ Sub myTasksExcel()
 ' =======================
     Columns(ageDaysCountColumn).Select
     Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlBetween, _
-        Formula1:="=$E$4", Formula2:="=99999"
+        Formula1:="=$F$4", Formula2:="=99999"
     Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
     With Selection.FormatConditions(1).Font
         .Color = -16383844
@@ -224,7 +224,7 @@ Sub myTasksExcel()
     Application.CutCopyMode = False
     
     Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlBetween, _
-        Formula1:="=$E$5", Formula2:="=$E$4"
+        Formula1:="=$F$5", Formula2:="=$E$4"
     Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
     With Selection.FormatConditions(1).Font
         .Color = -16754788
@@ -351,7 +351,7 @@ Sub myTasksExcel()
     Columns(priorityColumns).Select
     
     Selection.FormatConditions.Add Type:=xlExpression, Formula1:= _
-        "=$D1=""1-Crit"""
+        "=$E1=""1-Crit"""
     Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
     With Selection.FormatConditions(1).Font
         .Color = -16383844
@@ -365,7 +365,7 @@ Sub myTasksExcel()
     Selection.FormatConditions(1).StopIfTrue = False
     
     Selection.FormatConditions.Add Type:=xlExpression, Formula1:= _
-        "=$D1=""2-Norm"""
+        "=$E1=""2-Norm"""
     Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
     With Selection.FormatConditions(1).Font
         .Color = -10209504
@@ -379,7 +379,7 @@ Sub myTasksExcel()
     Selection.FormatConditions(1).StopIfTrue = False
     
     Selection.FormatConditions.Add Type:=xlExpression, Formula1:= _
-        "=$D1=""3-Low"""
+        "=$E1=""3-Low"""
     Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
     With Selection.FormatConditions(1).Font
         .Color = -16751204
